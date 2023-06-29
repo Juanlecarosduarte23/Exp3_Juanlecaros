@@ -1,0 +1,321 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bookstop</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'img/logo_bookstop.png' %}" />
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js">
+
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/estilos.css' %}" rel="stylesheet">
+    <link href="{% static 'css/estilos2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/reloj.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/formulario.css' %}" rel="stylesheet">
+
+    
+
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+    
+    <style>
+        body {
+            color:black;
+            font-size: 0.9em;
+            width:absolute;
+        }
+
+        p {
+            text-align: center;
+        }
+
+
+     
+        label.error {
+            color:red;
+            font-size: 0.8em;
+            width:200px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $("#formulario").validate({
+                rules:{
+                    usuario: "required",
+                    correo: "required",
+                    telefono: "required",
+                    problema: "required",
+                    imagen:"required"
+
+                },
+                messages:{
+                    usuario:{
+                        required :'Ingrese una usuario..',
+                    },
+                    correo:{
+                        required: 'Ingrese una correo..',
+                    },
+                    telefono:{
+                        required: 'Ingrese un telefono..',
+                    },
+                    problema:{
+                        required: 'Ingrese un problema..',
+                    },
+                    
+                    imagen:{
+                        required: 'Seleccione una imagen',
+                    }
+                }
+            })
+        })
+    </script>
+
+
+</head>
+<body>
+
+   
+    
+    <div class="container">
+        <h2>Contacto</h2>
+
+        <form method="POST" id="formulario4" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <label for="{{ Contacoform.field.name }}">
+                    {{ contacoform.usuario.label }}
+                </label>
+                {{ contacoform.usuario }}
+            </div>
+
+            <div class="row">
+                <label for="{{ Contactoform.field.name }}">
+                    {{ contactoform.correo.label }}
+                </label>
+                {{ contactoform.correo }}
+            </div>
+
+            <div class="row">
+                <label for="{{ Contacoform.field.name }}">
+                    {{ contacoform.telefono.label }}
+                </label>
+                {{ contacoform.telefono }}
+            </div>
+
+            <div class="row">
+                <label for="{{ Contactoform.field.name }}">
+                    {{ contactoform.problema.label }}
+                </label>
+                {{ contactoform.problema }}
+            </div>
+
+            
+
+            <div class="row">
+                <label for="{{ Contacoform.field.name }}">
+                    {{ contacoform.imagen.label }}
+                </label>
+                {{ contactoform.imagen }}
+            </div>
+
+            <br><br>
+            <input type="submit" class="btn btn-primary" value="Enviar">
+            <a href="{% url 'index' %}" class="btn btn-success">Inicio</a>
+            
+
+
+        </form>
+    </div>
+
+
+        
+
+            <div class="container">
+                <h3>Ultimos Cambios Del Dolar de hoy</h3>
+        
+                <input type="button" value="Revisar" id="revisar" class="btn btn-primary"> 
+                <table class="table" id="dolar">
+                    <thead>                     
+                        <tr>                   
+                            <th>Fecha</th>         
+                            <th>Valor Dolar</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>                  
+        
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="wrap">
+                <div class="widget">
+                    <div class="fecha">
+            
+                        <p id="diaSemana" class="diaSemana"></p>
+                        <p id="dia" class="dia"></p>
+                        <p>de </p>
+                        <p  id="mes" class="mes"></p>
+                        <p>del </p>
+                        <p id="year" class="year"></p>
+                        <p>-</p>
+                        
+                        <p id="horas" class="horas"></p>
+                        <p>:</p>
+                        <p id="minutos" class="minutos"></p>
+                        <p>:</p>
+            
+                    
+                        
+                        <p id="segundos" class="segundos"></p>
+                        <p id="ampm" class="ampm"></p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+     
+        
+
+    </main><br>
+
+
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)" 
+style="background-color:#D94A38;width:220px;height:230px;padding:40px; margin-left: 20px; text-align: center;padding-bottom: 40px;font-size: 40px;">
+</div>
+
+<script>
+function mOver(obj) {
+  obj.innerHTML = "Gracias"
+}
+
+function mOut(obj) {
+  obj.innerHTML = "Por Visitar "
+}
+</script>
+    <footer>
+
+        
+        <div class="row col-12">
+            <div class="col-lg-2">
+                <img src="{% static 'img/fondo3.png' %}" alt="logoBookStop" width="60px">
+            </div>
+            <div class="col-lg-1">
+                <a href="{% url 'index' %}" id="linkFooter"><strong>INICIO</strong></a>
+            </div>
+            <div class="col-lg-1">
+                <a href="{% url 'somos' %}" id="linkFooter"><strong>QUIENES SOMOS</strong></a>
+            </div>
+            <div class="col-lg-1">
+                <a href="{% url 'contacto' %}" id="linkFooter"><strong>CONTACTO</strong></a>
+            </div>
+            <div class="col-lg-2">
+                <a href="{% url 'mostrar' %}" id="linkFooter"><strong>contacoS</strong></a>
+            </div>
+
+            
+                
+
+            <div class="col-lg-2">
+                <strong>Síguenos</strong>
+                <br><br>
+                <div class="row">
+                    <img src="{% static 'icon/twitter.png' %}" alt="" width="30px" height="30px"
+                        style=" margin-left: 15px;">
+                    <img src="{% static 'icon/facebook.png' %}" alt="" width="30px" height="30px" style=" margin-left: 10px;">
+                    <img src="{% static 'icon/insta.png' %}" alt="" width="30px" height="30px" style=" margin-left: 10px;">
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-3">
+
+                <strong>Contacto</strong>
+                <br><br>
+                <div class="row">
+                    <img src="{% static 'icon/house.png' %}" alt="" width="20px" height="20px"
+                        style="margin-right: 10px; margin-left: 15px;">
+                    <p>ValleEncanto 411, Talagante</p>
+                </div>
+                <div class="row">
+                    <img src="{% static 'icon/smartphone.png' %}" alt="" width="20px" height="20px"
+                        style="margin-right: 10px; margin-left: 15px;">
+                    <p>+569 41001278</p>
+                </div>
+                <div class="row">
+                    <img src="{% static 'icon/contact.png' %}" alt="" width="20px" height="20px"
+                        style="margin-right: 10px; margin-left: 15px;">
+                    <p>Jvalledelencanto@gmail.com</p>
+                </div>
+                <br><br><br>
+
+                <p>&copy;Juan Guillermo Lecaros Duarte ©2023 Todos los Derechos Reservados.-Jardineria</p>
+            </div>
+        </div>
+
+
+        
+    </footer>
+
+    <!-- script que permite mostrar/ocultar navbar haciendo scroll -->
+    <script type="text/javascript">
+        let ubicacionInicial = window.pageYOffset;
+        window.onscroll = function () {
+            let ubicacionPosterior = window.pageYOffset;
+            if (ubicacionInicial >= ubicacionPosterior) {
+                document.getElementById("barraNav").style.top = "0";
+            }
+            else {
+                document.getElementById("barraNav").style.top = "-70px";
+            }
+            ubicacionInicial = ubicacionPosterior
+        }
+    </script>
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/validacion.js' %}"></script>
+
+
+<script src="{% static 'js/js.js' %}"></script>
+<script src="{% static 'js/reloj.js' %}"></script>
+<script src="{% static 'js/metodos.js' %}"></script>
+
+
+<script src="https://kit.fontawesome.com/03a89292db.js" crossorigin="anonymous"></script>
+
+</html>
+{% endblock %}

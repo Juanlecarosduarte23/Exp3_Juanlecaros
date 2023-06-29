@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/estilos.css' %}" rel="stylesheet">
+    <title>Vehiculos</title>
+</head>
+<body>
+    <div class="container"> 
+        <h1>Gestionar Reclamos</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>usuario</th>
+                    <th>correo</th>
+                    <th>telefono</th>
+                    <th>problema</th>
+                    <th>Imagen</th>
+                    <th>Eliminar</th>
+                    <th>Modificar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cosa in productos%}
+                <tr>
+                    <td>{{ cosa.usuario }}</td>
+                    <td>{{ cosa.correo }}</td>
+                    <td>{{ cosa.telefono }}</td>
+                    <td>{{ cosa.problema }}</td>
+                    {% if cosa.imagen %}
+                    <td>
+                        <img src="{{ cosa.imagen.url }}" style="height: 50px; width: 50px;">
+                    </td>
+                    {% else %}
+                    <td>
+                        <p style="color:red">No tiene foto</p>
+                    </td>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <td>
+                            <a href="{% url 'eliminar' cosa.usuario %}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    {% else %}
+                        <td>
+                            <a href="#" class="btn btn-danger">No tiene permiso</a>
+                        </td>
+                    {% endif %}
+                    
+                    <td>
+                        <a href="{% url 'modificar2' cosa.usuario %}" class="btn btn-warning">Modificar</a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'contacto' %}" class="btn btn-success">Crear Vehiculo</a>
+    </div>
+   
+</body>
+</html>
+{% endblock %}
